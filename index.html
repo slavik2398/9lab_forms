@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Factorial Calculator</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+    }
+
+    h1 {
+        text-align: center;
+    }
+
+    form {
+        max-width: 400px;
+        margin: 0 auto;
+    }
+
+    input[type="number"],
+    input[type="text"],
+    input[type="password"],
+    textarea,
+    button {
+        display: block;
+        margin-bottom: 10px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    input[type="radio"],
+    input[type="checkbox"] {
+        margin-right: 5px;
+    }
+
+    #result {
+        margin-top: 10px;
+        font-weight: bold;
+    }
+
+    p {
+        margin-bottom: 5px;
+    }
+</style>
+</head>
+<body>
+
+<h1>Factorial Calculator</h1>
+
+<form id="factorialForm">
+    <p>Enter a number to calculate its factorial:</p>
+    <input type="number" id="numberInput" placeholder="Enter a number">
+    <button type="button" onclick="calculateFactorial()">Calculate Factorial</button>
+    <button type="reset">Reset</button>
+    <p id="result"></p>
+    
+    <p>Enter your name:</p>
+    <input type="text" id="nameInput" placeholder="Enter your name">
+    
+    <p>Enter your password:</p>
+    <input type="password" id="passwordInput" placeholder="Enter your password">
+    
+    <p>Select your gender:</p>
+    <input type="radio" id="maleRadio" name="gender" value="male">
+    <label for="maleRadio">Male</label>
+    <input type="radio" id="femaleRadio" name="gender" value="female">
+    <label for="femaleRadio">Female</label>
+    <br><br>
+    
+    <input type="checkbox" id="agreeCheckbox">
+    <label for="agreeCheckbox">I agree to the terms and conditions</label>
+    
+    <br><br>
+    <button type="button" onclick="login()">Login</button>
+    
+    <p>Additional comments:</p>
+    <textarea id="comments" placeholder="Enter your comments"></textarea>
+    
+</form>
+
+<script>
+function calculateFactorial() {
+    var input = document.getElementById("numberInput").value;
+    var resultContainer = document.getElementById("result");
+    
+    // Перевірка на введення числа
+    if (isNaN(input)) {
+        resultContainer.textContent = "Будь ласка, введіть число.";
+        return;
+    }
+    
+    // Перевірка на невід'ємність числа
+    if (input < 0) {
+        resultContainer.textContent = "Факторіал визначений лише для невід'ємних чисел.";
+        return;
+    }
+    
+    // Обчислення факторіалу
+    var factorial = 1;
+    for (var i = 1; i <= input; i++) {
+        factorial *= i;
+    }
+    
+    resultContainer.textContent = "Факторіал " + input + " = " + factorial;
+}
+
+function login() {
+    var name = document.getElementById("nameInput").value;
+    var password = document.getElementById("passwordInput").value;
+    var gender = document.querySelector('input[name="gender"]:checked');
+    var agree = document.getElementById("agreeCheckbox").checked;
+    var comments = document.getElementById("comments").value;
+    
+    document.write("Name: " + name + "<br>");
+    document.write("Password: " + password + "<br>");
+    document.write("Gender: " + (gender ? gender.value : "Not selected") + "<br>");
+    document.write("Agree: " + (agree ? "Yes" : "No") + "<br>");
+    document.write("Comments: " + comments + "<br>");
+}
+</script>
+
+</body>
+</html>
